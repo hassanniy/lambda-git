@@ -24,7 +24,7 @@ jobs:
         run: |
           npm ci
       - name: deploy
-        uses: nelonoel/branch-name@v1
+      - uses: nelonoel/branch-name@v1
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
