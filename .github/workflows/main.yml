@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - uses: nelonoel/branch-name@v1
         with:
           node-version: '12'
       - name: Configure AWS Credentials
@@ -29,6 +28,5 @@ jobs:
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
-          echo GITHUB_REF=${GITHUB_REF}
-          echo ${BRANCH_NAME}
+          echo ${GITHUB_REF##*/}
           aws lambda update-function-code --function-name $GITHUB_REF --zip-file=fileb://deploy.zip
