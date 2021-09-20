@@ -27,5 +27,5 @@ jobs:
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
-          echo "branches"
+          echo GITHUB_REF=${GITHUB_REF}
           aws lambda update-function-code --function-name=$GITHUB_REF --zip-file=fileb://deploy.zip
