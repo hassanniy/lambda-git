@@ -6,6 +6,7 @@ on:
 
 jobs:
   deploy_lambda:
+        if: ${{ github.ref == 'refs/heads/staging || github.ref == 'refs/heads/develop' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,4 +28,4 @@ jobs:
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
-          aws lambda update-function-code --function-name=develop --zip-file=fileb://deploy.zip
+          aws lambda update-function-code --function-name=$GITHUB_REF --zip-file=fileb://deploy.zip
