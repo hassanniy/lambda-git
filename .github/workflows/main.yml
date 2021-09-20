@@ -2,8 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches:
-    - main
+    branches: [develop, staging]
 
 jobs:
   deploy_lambda:
